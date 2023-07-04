@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'versatileimagefield',
     'import_export',
     'registration',
+    'crispy_forms',
+    "crispy_bootstrap5",
 
 ]
 
@@ -107,6 +109,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -147,3 +151,13 @@ VERSATILEIMAGEFIELD_SETTINGS = {
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+SEND_ACTIVATION_EMAIL = False
+REGISTRATION_EMAIL_SUBJECT_PREFIX = ''
+
+REGISTRATION_OPEN = True
+LOGIN_URL = '/app/accounts/login/'
+LOGOUT_URL = '/app/accounts/logout/'
+LOGIN_REDIRECT_URL = '/'
