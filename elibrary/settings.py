@@ -157,7 +157,7 @@ REGISTRATION_AUTO_LOGIN = True
 SEND_ACTIVATION_EMAIL = False
 REGISTRATION_EMAIL_SUBJECT_PREFIX = ''
 
-REGISTRATION_OPEN = True
-LOGIN_URL = '/app/accounts/login/'
-LOGOUT_URL = '/app/accounts/logout/'
+REGISTRATION_OPEN = False
+LOGIN_URL = '/accounts/login/'
+LOGOUT_URL = '/accounts/logout/'
 LOGIN_REDIRECT_URL = '/'
