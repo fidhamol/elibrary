@@ -22,6 +22,13 @@ urlpatterns = [
     path("book-delete/<str:pk>/", views.BookDelete.as_view(), name="bookdelete"),
 
 
+    path("author-create/", views.authorCreate.as_view(), name="authorcreate"),
+    path("author-list/", views.authorList.as_view(), name="authorlist"),
+    path("author-detail/<str:pk>/", views.authorDetail.as_view(), name="authordetail"),
+    path("author-update/<str:pk>/", views.authorUpdate.as_view(), name="authorupdate"),
+    path("author-delete/<str:pk>/", views.authorDelete.as_view(), name="authordelete"),
+
+
 
 ]
 

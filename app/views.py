@@ -1,7 +1,8 @@
 # Edit web/views.py
+from typing import Any, Dict
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from . models import Book
+from . models import Book,BookAuthor
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 import json
@@ -46,6 +47,9 @@ class BookCreate(LoginRequiredMixin, CreateView):
     model=Book
     fields="__all__"
     template_name = "web/book_form.html"
+
+    def get_success_url(self):
+        return reverse_lazy('app:booklist')
     
 
 class BookList(LoginRequiredMixin, ListView):
@@ -55,6 +59,11 @@ class BookList(LoginRequiredMixin, ListView):
     # success_url = reverse_lazy('app:book_list')
     def get_success_url(self):
         return reverse_lazy('app:bookdetail', kwargs={'pk': self.pk})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = ''
+        return context
 
 
 class BookDetail(LoginRequiredMixin, DetailView):
@@ -79,3 +88,51 @@ class BookDelete(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('app:booklist')
+    
+
+
+class authorCreate(LoginRequiredMixin, CreateView):
+    model=BookAuthor
+    fields="__all__"
+    template_name = "web/author_form.html"
+
+    def get_success_url(self):
+        return reverse_lazy('app:authorlist')
+    
+
+class authorList(LoginRequiredMixin, ListView):
+    model=BookAuthor
+    fields="__all__"
+    template_name = "web/author_list.html"
+    # success_url = reverse_lazy('app:author_list')
+    def get_success_url(self):
+        return reverse_lazy('app:authordetail', kwargs={'pk': self.pk})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = ''
+        return context
+
+
+class authorDetail(LoginRequiredMixin, DetailView):
+    model =  BookAuthor
+    template_name = "web/author_detail.html"
+    fields = '_all_'
+
+
+class authorUpdate(LoginRequiredMixin, UpdateView):
+    model =  BookAuthor
+    template_name = "web/author_update.html"
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse_lazy('app:authorlist')
+
+
+class authorDelete(LoginRequiredMixin, DeleteView):
+    model =  BookAuthor
+    template_name = "web/author_delete.html"
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse_lazy('app:authorlist')

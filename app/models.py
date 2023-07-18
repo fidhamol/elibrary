@@ -9,6 +9,14 @@ class BookAuthor(models.Model):
     def __str__(self):
         return str(self.name)
 
+    def get_absolute_url(self):
+        return reverse_lazy('app:authordetail', kwargs={'pk': self.pk})
+    
+    def get_update_url(self):
+        return reverse_lazy('app:authorupdate', kwargs={'pk': self.pk})
+    
+    def get_delete_url(self):
+        return reverse_lazy('app:authordelete', kwargs={'pk': self.pk})
 
 class Book(models.Model):
     title = models.CharField(max_length=100)
