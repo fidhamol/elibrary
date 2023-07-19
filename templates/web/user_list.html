@@ -14,7 +14,7 @@
     <nav aria-label="breadcrumb">
         <ul class="breadcrumb">
             <li class="breadcrumb-item active" aria-current="page">
-                <a href="{% url 'web:authorcreate' %}" class="btn btn-lg btn-gradient-primary">New </a>
+                <a href="{% url 'web:usercreate' %}" class="btn btn-lg btn-gradient-primary">New </a>
             </li>
         </ul>
     </nav>
@@ -38,12 +38,13 @@
                             {% for object in object_list %}
                             <tr>
                                 <td>{{forloop.counter}}</td>
-                                <td> {{object.name}} </td>
+                                <td> {{object.username}} </td>
+                                <td> {{object.email}} </td>
                                 {% if request.user.is_superuser %}
                                 <td>
-                                  <a href="{{object.get_absolute_url}}" class="btn btn-sm btn-circle btn-primary"><i class="mdi mdi-eye"></i></a> 
-                                    <a href="{{object.get_update_url}}" class="btn btn-sm btn-circle btn-info"><i class="mdi mdi-pencil"></i></a>
-                                    <a href="{% url 'app:user_delete' object.id %}" class="btn btn-sm btn-circle btn-danger"><i class="mdi mdi-delete"></i></a>
+                                  {% comment %} <a href="{{object.get_absolute_url}}" class="btn btn-sm btn-circle btn-primary"><i class="mdi mdi-eye"></i></a>  {% endcomment %}
+                                    <a href="{% url 'web:userupdate' object.id %}" class="btn btn-sm btn-circle btn-info"><i class="mdi mdi-pencil"></i></a>
+                                    <a href="{% url 'web:userdelete' object.id %}" class="btn btn-sm btn-circle btn-danger"><i class="mdi mdi-delete"></i></a>
                                 </td>
                                 {% endif %}
                             </tr>

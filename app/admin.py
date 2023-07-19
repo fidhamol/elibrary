@@ -11,7 +11,7 @@ class BookInline(admin.TabularInline):
 
 @admin.register(Book)
 class BookAdmin(ImportExportActionModelAdmin):
-    list_display = ("title", "year", "author", "price", "is_special", "is_trending")
+    list_display = ("title","slug", "year", "author", "price", "is_special", "is_trending")
     list_filter = ("is_special", "is_trending", "author")
     search_fields = ("title", "author__name", "year", "description", "author__bio")
     prepopulated_fields = {"slug": ("title",)}

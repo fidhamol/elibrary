@@ -3,6 +3,7 @@ from typing import Any, Dict
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from . models import Book,BookAuthor
+from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 import json
@@ -62,7 +63,7 @@ class BookList(LoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = ''
+        context["title"] = 'book'
         return context
 
 
@@ -110,7 +111,7 @@ class authorList(LoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = ''
+        context["title"] = 'author'
         return context
 
 
@@ -136,3 +137,41 @@ class authorDelete(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('app:authorlist')
+    
+# ======================================================
+
+class userCreate(LoginRequiredMixin, CreateView):
+    model=User
+    fields="__all__"
+    template_name = "web/user_form.html"
+
+    def get_success_url(self):
+        return reverse_lazy('app:userlist')
+    
+
+class userList(LoginRequiredMixin, ListView):
+    model=User
+    template_name = "web/user_list.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = 'user'
+        return context
+
+
+class userUpdate(LoginRequiredMixin, UpdateView):
+    model =  User
+    template_name = "web/user_update.html"
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse_lazy('app:userlist')
+
+
+class userDelete(LoginRequiredMixin, DeleteView):
+    model =  User
+    template_name = "web/user_delete.html"
+    success_url = reverse_lazy('app:userlist')
+
+    def get_success_url(self):
+        return reverse_lazy('app:userlist')    

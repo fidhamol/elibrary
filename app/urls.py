@@ -29,6 +29,11 @@ urlpatterns = [
     path("author-delete/<str:pk>/", views.authorDelete.as_view(), name="authordelete"),
 
 
+    path("user-create/", views.userCreate.as_view(), name="usercreate"),
+    path("user-list/", views.userList.as_view(), name="userlist"),
+    path("user-update/<str:pk>/", views.userUpdate.as_view(), name="userupdate"),
+    path("user-delete/<str:pk>/", views.userDelete.as_view(), name="userdelete"),
+
 
 ]
 

@@ -154,10 +154,24 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
-SEND_ACTIVATION_EMAIL = False
+SEND_ACTIVATION_EMAIL = True
 REGISTRATION_EMAIL_SUBJECT_PREFIX = ''
 
-REGISTRATION_OPEN = False
+REGISTRATION_OPEN = True
 LOGIN_URL = '/accounts/login/'
 LOGOUT_URL = '/accounts/logout/'
 LOGIN_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp-relay.brevo.com'
+EMAIL_HOST_USER = 'fidhaahmol@gmail.com'
+EMAIL_HOST_PASSWORD = 'qkAyOrMnKpGfdwXc'
+EMAIL_PORT = 587
+
+#This did the trick
+DEFAULT_FROM_EMAIL = 'mail@gmail.com'
+DEFAULT_BCC_EMAIL= 'fidhaahmol@gmail.com'
+DEFAULT_REPLY_TO_EMAIL = 'fidhaahmol@gmail.com'
+SERVER_EMAIL = 'fidhaahmol@gmail.com'
+ADMIN_EMAIL = 'fidhaahmol@gmail.com'
